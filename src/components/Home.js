@@ -1,9 +1,17 @@
 import React from 'react'
-import x from './resources/x.png'
+import UpcomingLaunch from '../UpcomingLaunch'
+import elon from './resources/elon.jpeg'
 const Home = () => {
     return (
-        <div>
-            <img className="logo" src={x} alt="Space x" />
+        <div  className="hero-landing">
+            <div className="hero-text">
+                <h2>Space X Page</h2>
+                <p>Information on the Rockets and Launches of Space X</p>
+                <div className="upcoming">
+                    <UpcomingLaunch/>
+                </div>
+            </div>
+           <img className="hero-image" src={elon} alt="" />
         </div>
     )
 }

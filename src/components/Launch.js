@@ -1,31 +1,33 @@
 import { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
 const Launch = ({match}) => {
-    const uri = `https://api.spacexdata.com/v4/launches/`
+    const uri = `https://api.spacexdata.com/v4/launches/${match.params.id}`
     const [oneLaunch, setOneLaunch] = useState({})
     const [images, setImages] = useState([])
-    const [firstStage, setFirstStage] = useState({})
-    const [engines, setEngines] = useState({})
-    const [height, setHeight] = useState({})
 
         const getLaunch = async () => {
             
-            await fetch(uri + match.params.id)
+            await fetch(uri)
                 .then(res => res.json())
                 .then(res => {
                     setOneLaunch(res)
-                    
+                    setImages(res.links.patch)
                 })
         }
     useEffect(() => {
         getLaunch()
     }, [])
-    // return (
-    //     // <SingleLaunchPage key={match.params.id} images={images} oneRocket={oneRocket} firstStage={firstStage}engines={engines} height={height}/>
-    // )
+    
     return(
-        <div>
-            <h1>{oneLaunch.flight_number}</h1>
+        <div className="launch-page">
+            <h1>Flight {oneLaunch.flight_number}</h1>
             <h2>{oneLaunch.name}</h2>
+            <span><img src={images.small} alt="" /></span>
+            
+            <p>Launch Date: {oneLaunch.date_local}</p>
+            <iframe src={`https://www.youtube.com/embed?v=${oneLaunch.youtube_id}`} frameborder="0" title={oneLaunch.name}></iframe>
+            <p>{oneLaunch.details}</p>
+            <Link to={`/rockets/${oneLaunch.rocket}`}>Rocket</Link>
         </div>
         )
 }
