@@ -1,12 +1,90 @@
+*,
+::before,
+::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.logo {
+  width: 800px;
+  height: auto;
+  background: transparent;
+}
+body {
+  color: #fefefe;
+}
 .launches-container {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 10px;
 }
-.rocket-card {
+.rocket-card,
+.launch-card {
   display: flex;
   flex-direction: column;
   padding: 1rem;
-  border: 1px solid #333;
+  border: 1px solid #464444;
+  background: #444444;
   margin: 15px;
+  border-radius: 10px;
+}
+.rocket-card > p {
+  height: 150px;
+}
+.rockets-image {
+  width: 100%;
+  height: 300px;
+  max-width: 400px;
+  object-fit: cover;
+  border-radius: 10px;
+  align-self: center;
+}
+.rocket-page {
+  margin: 2rem;
+}
+.rocket-image {
+  width: 100%;
+  border-radius: 20px;
+}
+.launch-patch {
+  width: 100%;
+  max-width: 300px;
+  object-fit: scale-down;
+  align-self: center;
+}
+.read-more {
+  text-align: center;
+  padding: 5px;
+  border: 1px solid #fefefe;
+  transition: background 0.5s ease-in;
+}
+.read-more:hover {
+  background: #fefefe;
+  color: #333;
+}
+.failure {
+  padding: 1rem 0;
+}
+.launch-card > h1 {
+  padding: 0.25rem 0.5rem;
+  color: #333;
+  border-radius: 10px 0 0 10px;
+  font-weight: 500;
+}
+
+@media screen and (max-width: 800px) {
+  .launches-container {
+    display: flex;
+    flex-direction: column;
+  }
+  .rocket-card {
+    padding: 0.75rem;
+    margin: 12px;
+  }
+  .rockets-image {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    border-radius: 10px;
+  }
 }
