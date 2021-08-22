@@ -1,25 +1,58 @@
+import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import LaunchCard from './LaunchCard'
-const uri = `https://api.spacexdata.com/v4/launches/?limit=10`
+import UpcomingLaunchCard from './UpcomingLaunchCard'
+const uri = `https://api.spacexdata.com/v4/launches/query`
 const Rockets = () => {
     const [launches, setLaunches] = useState([])
     const [loading, setLoading] = useState(true)
-    useEffect(()=>{
+    const [offset, setOffset] = useState(0)
+    const [ascendDescend, setAscendDescend] = useState('asc')
+    
+    
+    let params = {
+        offset:offset,
+        limit:10,
+        sort:{
+            "flight_number": `${ascendDescend}`
+        }
+    }
+    const getData = async () => {
         setLoading(true)
-        fetch(uri)
-        .then(res => res.json())
-        
-        .then(res =>{
-            setLaunches(res)
+        await axios.post(uri,{options:params})
+        .then(res => {
+            setLaunches(res.data.docs)
             console.log(res)
             setLoading(false)
         })
-    },[])
+    }
+    useEffect(()=>{
+        getData()
+    },[offset,ascendDescend])
+    const handleClick = () => {
+        setOffset(offset + 10)
+        window.scrollTo({top:0, behavior:'smooth'})
+        console.log(offset)
+    }
+    const ascending = () => {
+        if(ascendDescend !== "asc"){
+            setAscendDescend("asc")
+        }else{
+            setAscendDescend("desc")
+        }
+        
+        console.log(ascendDescend)
+    }
     return (
-        loading ? <div className="launches-container"><div style={{height: 400}} className="launch-card"/><div style={{height: 400}}className="launch-card"/><div style={{height: 400}} className="launch-card"/><div style={{height: 400}} className="launch-card"/></div> : <div className="launches-container">
+        loading ? <div className="launches-container"><button className="ascend-button" onClick={ascending}>click</button><div style={{height: 400}} className="launch-card"/><div style={{height: 400}}className="launch-card"/><div style={{height: 400}} className="launch-card"/><div style={{height: 400}} className="launch-card"/></div> : <div className="launches-container">
+            <button className="ascend-button"  onClick={ascending}>click</button>
        {launches.map(launch=>{
-           return <LaunchCard key={launch.flight_id} launch={launch}/> 
+           return( 
+            launch.upcoming ? <UpcomingLaunchCard launch={launch}/> : <LaunchCard key={launch.id} launch={launch}/> 
+           )
        })}
+       
+       <button className="next-button" onClick={handleClick}>Next</button>
        </div>
     )
 }

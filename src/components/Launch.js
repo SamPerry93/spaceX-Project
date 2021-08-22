@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
+import SingleLaunchPage from './SingleLaunchPage'
 const Launch = ({match}) => {
     const uri = `https://api.spacexdata.com/v4/launches/${match.params.id}`
     
@@ -23,16 +23,9 @@ const Launch = ({match}) => {
     }, [])
     
     return(
-        <div className="launch-page">
-            <h1>Flight {oneLaunch.flight_number}</h1>
-            <h2>{oneLaunch.name}</h2>
-            <span><img src={images.small} alt="" /></span>
-            
-            <p>Launch Date: {oneLaunch.date_local}</p>
-            <iframe src={videoLink} title='video'></iframe>
-            <p>{oneLaunch.details}</p>
-            <Link to={`/rockets/${oneLaunch.rocket}`}>Rocket {videoLink}</Link>
-        </div>
+        <>
+            <SingleLaunchPage key={match.params.id} oneLaunch={oneLaunch} images={images}/>
+        </>
         )
 }
 

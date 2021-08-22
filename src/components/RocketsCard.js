@@ -5,9 +5,9 @@ const RocketsCard = ({rocket}) => {
     const [images, setImages] = useState([rocket.flickr_images])
     return (
     
-        <div className="rocket-card">
-            {images.map(img =>{
-                return <img className="rockets-image" src={img} alt={rocket.name}/>
+        <div className="rocket-card" >
+            {images.map((img,idx) =>{
+                return <img key={idx} className="rockets-image" src={img} alt={rocket.name}/>
             })}
             <h1>{rocket.name}</h1>
             <p>{rocket.description}</p>

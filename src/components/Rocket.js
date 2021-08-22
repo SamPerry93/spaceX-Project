@@ -32,7 +32,7 @@ const Rocket = ({match}) => {
         
     }, [])
     return (
-        <SingleRocketPage key={match.params.id} images={images} oneRocket={oneRocket} firstStage={firstStage}engines={engines} height={height}/>
+        <SingleRocketPage key={oneRocket.id} images={images} oneRocket={oneRocket} firstStage={firstStage}engines={engines} height={height}/>
     )
 }
 
