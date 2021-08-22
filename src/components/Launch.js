@@ -2,20 +2,24 @@ import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 const Launch = ({match}) => {
     const uri = `https://api.spacexdata.com/v4/launches/${match.params.id}`
+    
     const [oneLaunch, setOneLaunch] = useState({})
     const [images, setImages] = useState([])
-
+    const [youtubeUrl,setYoutubeUrl] = useState('')
+    const videoLink = `https://www.youtube.com/embed?v=`+ youtubeUrl
         const getLaunch = async () => {
-            
             await fetch(uri)
                 .then(res => res.json())
                 .then(res => {
                     setOneLaunch(res)
+                    setYoutubeUrl(res.links.youtube_id)
                     setImages(res.links.patch)
+                    console.log(videoLink)
                 })
         }
     useEffect(() => {
         getLaunch()
+        
     }, [])
     
     return(
@@ -25,9 +29,9 @@ const Launch = ({match}) => {
             <span><img src={images.small} alt="" /></span>
             
             <p>Launch Date: {oneLaunch.date_local}</p>
-            <iframe src={`https://www.youtube.com/embed?v=${oneLaunch.youtube_id}`} frameborder="0" title={oneLaunch.name}></iframe>
+            <iframe src={videoLink} title='video'></iframe>
             <p>{oneLaunch.details}</p>
-            <Link to={`/rockets/${oneLaunch.rocket}`}>Rocket</Link>
+            <Link to={`/rockets/${oneLaunch.rocket}`}>Rocket {videoLink}</Link>
         </div>
         )
 }

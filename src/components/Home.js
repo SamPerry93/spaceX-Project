@@ -3,7 +3,8 @@ import UpcomingLaunch from '../UpcomingLaunch'
 import elon from './resources/elon.jpeg'
 const Home = () => {
     return (
-        <div  className="hero-landing">
+        <>
+        <img className="hero-image" src={elon} alt="" />
             <div className="hero-text">
                 <h2>Space X Page</h2>
                 <p>Information on the Rockets and Launches of Space X</p>
@@ -11,8 +12,8 @@ const Home = () => {
                     <UpcomingLaunch/>
                 </div>
             </div>
-           <img className="hero-image" src={elon} alt="" />
-        </div>
+           
+        </>
     )
 }
 

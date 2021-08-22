@@ -16,7 +16,7 @@ const Rockets = () => {
         })
     },[])
     return (
-        loading ? <><div style={{height: 400}} className="launch-card"/><div style={{height: 400}}className="launch-card"/></> : <div className="launches-container">
+        loading ? <div className="launches-container"><div style={{height: 400}} className="launch-card"/><div style={{height: 400}}className="launch-card"/><div style={{height: 400}} className="launch-card"/><div style={{height: 400}} className="launch-card"/></div> : <div className="launches-container">
        {launches.map(launch=>{
            return <LaunchCard key={launch.flight_id} launch={launch}/> 
        })}

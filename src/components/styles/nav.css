@@ -2,9 +2,8 @@
   width: 100%;
   padding: 1rem 0;
   background: #646464;
-  z-index: 10000;
+  z-index: 1000;
   top: 0;
-  left: 0;
 }
 .nav-list {
   display: flex;
@@ -13,6 +12,7 @@
 }
 .link {
   list-style-type: none;
+  font-size: 1rem;
 }
 a {
   text-decoration: none;
