@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import SingleLaunchPage from './SingleLaunchPage'
-const Launch = ({match}) => {
-    const uri = `https://api.spacexdata.com/v4/launches/${match.params.id}`
+const Launch = ({launch}) => {
+    const uri = `https://api.spacexdata.com/v4/launches/${launch.id}`
     
     const [oneLaunch, setOneLaunch] = useState({})
     const [images, setImages] = useState([])
@@ -12,7 +12,7 @@ const Launch = ({match}) => {
                 .then(res => res.json())
                 .then(res => {
                     setOneLaunch(res)
-                    setYoutubeUrl(res.links.youtube_id)
+                    //setYoutubeUrl(res.links.youtube_id)
                     setImages(res.links.patch)
                     console.log(videoLink)
                 })
@@ -24,7 +24,7 @@ const Launch = ({match}) => {
     
     return(
         <>
-            <SingleLaunchPage key={match.params.id} oneLaunch={oneLaunch} images={images}/>
+            <SingleLaunchPage key={launch.id} oneLaunch={oneLaunch} images={images}/>
         </>
         )
 }

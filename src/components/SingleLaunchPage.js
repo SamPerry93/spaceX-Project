@@ -10,7 +10,7 @@ const SingleLaunchPage = ({oneLaunch,images}) => {
             <p>Launch Date: {oneLaunch.date_local}</p>
             {/* <iframe src={videoLink} title='video'></iframe> */}
             <p>{oneLaunch.details}</p>
-            <Link to={`/rockets/${oneLaunch.rocket}`}>Rocket</Link>
+            <Link className="launchpage-rocket-link" to={`/rockets/${oneLaunch.rocket}`}>Rocket Page</Link>
         </div>
     )
 }
