@@ -1,7 +1,7 @@
 import React from 'react'
 
 const SingleRocketPage = ({oneRocket,images,firstStage,engines,height}) => {
-    
+    const date = new Date(oneRocket.first_flight)
     return (
         <div className="rocket-page">
             <img className="rocket-image" src={images} alt={oneRocket.name} />
@@ -11,7 +11,7 @@ const SingleRocketPage = ({oneRocket,images,firstStage,engines,height}) => {
                  
             </div>
             <div className="rocket-info">
-                <h3>First Flight: <span>{oneRocket.first_flight}</span></h3> 
+                <h3>First Flight: <span>{date.toUTCString().slice(0,16)}</span></h3> 
                 <h3>Height: <span>{height.feet}ft</span> </h3> 
                 <h3>Stages: <span>{oneRocket.stages}</span></h3>
                 <h3>Fuel: <span>{firstStage.fuel_amount_tons} tons</span></h3>

@@ -58,18 +58,18 @@ const Rockets = () => {
         <>
         <div className="launches-button-container">
             <button className="back-button" onClick={handleClickBack}>Back</button>
-            <button className="next-button" onClick={handleClickForward}>Next</button>
             <button className="ascend-button"  onClick={ascending}>
                 {ascendDescend === "asc" ? "Desc": "Asc"}
             </button>
-        </div> <div className="launches-container">
-            
-       {launches.map(launch=>{
-           return( 
-            launch.upcoming ?  <UpcomingLaunchCard launch={launch}/> : <LaunchCard key={launch.id} launch={launch}/> 
-           )
-        //    
-       })}
+            <button className="next-button" onClick={handleClickForward}>Next</button>
+        </div> 
+        
+        <div  className="launches-container">    
+        {launches.map(launch=>{
+            return( 
+                launch.upcoming ?  <UpcomingLaunchCard launch={launch}/> : <LaunchCard  key={launch.id} launch={launch}/> 
+            )
+        })}
        
        
        </div>

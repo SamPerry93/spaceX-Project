@@ -40,7 +40,7 @@ const UpcomingLaunch = () => {
     return (
         <div>
            <h3>Next Mission: {upcomingLaunch.name} {upcomingLaunch.flight_number} </h3>
-           <h4>{date.toUTCString()}</h4>
+           <h4>{date.toUTCString().slice(0,16)}</h4>
                 
         </div>
     )
