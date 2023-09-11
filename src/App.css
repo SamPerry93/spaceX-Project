@@ -41,7 +41,7 @@
   margin: 1rem;
   padding: 1rem;
   line-height: 1.5rem;
-  background: linear-gradient(#464444, #3e3e3e);
+  background: linear-gradient(#4b6283, #6d8ebb);
 }
 .lower-section > p {
   margin-bottom: 0.75rem;
@@ -76,7 +76,7 @@ body {
   font-size: 0.75rem;
   max-width: 20vw;
   padding: .5rem;
-  border: 2px solid #6f6c6c;
+  border: 2px solid #5d6c80;
   background: #2d2d2d;
   margin: 15px;
   border-radius: 15px;
